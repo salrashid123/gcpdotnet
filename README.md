@@ -170,6 +170,8 @@ NAME       NETWORK SRC_RANGES RULES  SRC_TAGS TARGET_TAGS
 allow-http default 0.0.0.0/0  tcp:80
 ```
 
+*Note*  The above service maps port 80 --> 8080 in the container and sets the firewall rules apprpriately.  If you want to directly use 8080 throughout, modify the services file and firewall rule.
+
 ######Create a GKE Cluster
 ```
 gcloud beta container clusters create cluster-1 --num-nodes 2
@@ -267,6 +269,7 @@ gcloud compute  target-pools create tphttp \
     --health-check httpcheck --region us-central1
 ```
 
+*Note*  The above service maps port 80 --> 8080 in the container and sets the firewall rules apprpriately.  If you want to directly use 8080 throughout, modify containers.yaml file, the firewall rule and the healthcheck port.
 
 Then setup the actual forwarding rule.  Note he IP address
 ```
