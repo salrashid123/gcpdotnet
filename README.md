@@ -4,7 +4,7 @@
 
 Sample code demonstrating running trivial .NET web applications on Google Cloud Platform services.  These simply builds off of existing technologies and samples but configures it to run on GCP effeciently with healh checking and load balancing.
 
-There are two samples contained here is confirmed to run against
+There are two samples contained here are both confirmed to run against
 
 **microsoft/aspnet:1.0.0-beta8-coreclr**
   
@@ -53,6 +53,12 @@ Then edit to change port to :8080 and allow healthchecks on `/_ah/health` in the
 * HelloMvc/Views/Health.cshtml
 * Dockerfile
 
+To run locally using the source docker repo:
+
+```bash
+docker run -p 8080:8080 docker.io/salrashid123/web1
+```
+
 
 ##### WebApplication1
 
@@ -62,9 +68,13 @@ Then edit to change port to :8080 and allow healthchecks on `/_ah/health` in the
 * project.json
 * Dockerfile
 
-You can, ofcourse, run the application directly from visual studio to test:
-![Visual Studio](images/webapplication1.png)
-make sure the correct runtime and coreclr version is used.
+
+To run locally using the source docker repo:
+
+```bash
+docker run -p 8080:8080 docker.io/salrashid123/mvc
+```
+
 
 ***  
 
@@ -85,7 +95,8 @@ Deploying to GAE is pretty simple:
 gcloud preview app deploy app.yaml
 ```
 
-
+Then, 
+`http://your_project.appspot.com`
 
 #####ContainerEngine
 
@@ -294,3 +305,35 @@ Finally, the service should be available at the port for the forwarding rule:
 
 
 ![Services Frontend](images/siteup.png)
+
+
+#### Building Locally
+The easiest way to extend these samples is to generate the docker images and test the images themselves.
+
+Optionally, if you want to extend and deploy these images locally, you will need docker.  Running the images directly inside docker mimics the deployment runtime on GCP (linux images) as opposed to directly running on windows or in Visual Studio.
+
+However, if you want to run coreclr directly on your machine, make sure you atleast have (on linux):
+
+```bash
+dnvm list
+
+Active Version              Runtime Architecture OperatingSystem Alias
+------ -------              ------- ------------ --------------- -----
+  *    1.0.0-beta8          coreclr x64          linux           default
+       1.0.0-beta8          mono                 linux/osx       
+```
+
+```bash
+dnx -p src/WebApplication1/project.json kestrel
+```
+
+on Windows
+
+![Visual Studio](images/dnvm_win.png)
+
+You can, ofcourse, run the application directly from visual studio to test:
+![Visual Studio](images/webapplication1.png)
+
+make sure the correct runtime and coreclr version is used.
+
+![Visual Studio](images/dnvm_vs.png)
