@@ -56,7 +56,7 @@ Then edit to change port to :8080 and allow healthchecks on `/_ah/health` in the
 To run locally using the source docker repo:
 
 ```bash
-docker run -p 8080:8080 docker.io/salrashid123/web1
+docker run -p 8080:8080 docker.io/salrashid123/mvc
 ```
 
 
@@ -72,7 +72,7 @@ Then edit to change port to :8080 and allow healthchecks on `/_ah/health` in the
 To run locally using the source docker repo:
 
 ```bash
-docker run -p 8080:8080 docker.io/salrashid123/mvc
+docker run -p 8080:8080 docker.io/salrashid123/web1
 ```
 
 
@@ -106,8 +106,8 @@ To deploy on GKE, you need to setup the replication controllers and frontend loa
 
 The two prebuilt images are on docker.io registry under:
 
-* **HelloMvc**:  docker.io/salrashid123/mvc
-* **WebApplication1** docker.io/salrashid123/web1
+* **HelloMvc**:  [docker.io/salrashid123/mvc](https://hub.docker.com/r/salrashid123/mvc/)
+* **WebApplication1** [docker.io/salrashid123/web1](https://hub.docker.com/r/salrashid123/web1/)
 
 
 ######Replication Controllers
