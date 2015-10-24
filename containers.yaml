@@ -1,0 +1,15 @@
+version: v1
+kind: Pod
+metadata:
+  name: web 
+spec:
+  containers:
+    - name: web
+      image: salrashid123/mvc
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080
+          hostPort: 80
+          protocol: TCP
+  restartPolicy: Always
+  dnsPolicy: Default

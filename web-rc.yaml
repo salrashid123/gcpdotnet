@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: web-rc
+  labels:
+    type: web-type
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        type: web-type
+    spec:
+      containers:
+      - name: web-container
+        image: salrashid123/mvc
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          protocol: TCP

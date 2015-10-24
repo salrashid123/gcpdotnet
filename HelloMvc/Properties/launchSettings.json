@@ -1,0 +1,21 @@
+{
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNET_ENV": "Development"
+      }
+    },
+    "kestrel": {
+      "commandName": "kestrel",
+      "launchBrowser": false,
+      "launchUrl": "http://localhost:8080"
+    },
+    "web": {
+      "commandName": "web",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:8080"
+    }
+  }
+}
