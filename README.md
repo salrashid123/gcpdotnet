@@ -34,7 +34,7 @@ The platforms that are domstrated here are:
 Both applications simply spin up and run the samples using coreclr in Docker container.  The samples are modified in the following way to run with healthchecks in GCP:
 
 * port:  8080
-* Requests to an endpoint */_ah/healh*_ **must* return a *200* OK HTTP response
+* GET requests to endpoint */_ah/healh* must return a *200* OK HTTP response
 * Use [Kestrel Webserver](https://github.com/aspnet/KestrelHttpServer)
 
 ***  
@@ -282,6 +282,8 @@ fwddotnet us-central1 104.197.85.206 TCP         us-central1/targetPools/tphttp
 ```
 
 **Note** the IP address for the forwarding rule **104.197.85.206**
+
+The example above uses a GCP [Network LoadBalancer](https://cloud.google.com/compute/docs/load-balancing/network/).  Since we are using HTTP only, the alternative could be to stup an [HTTP LoadBalancer](https://cloud.google.com/compute/docs/load-balancing/http/).
 
 ```
 gcloud compute instance-groups managed create dotnetgroup \
