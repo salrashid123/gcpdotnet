@@ -20,7 +20,7 @@ There are two samples contained here are both confirmed to run against
          --> ASP.NET Preview Templates 
           --> Empty"
 
-The platforms that are domstrated here are:
+The platforms that are demonstrated here are:
 
 * [Appengine](#appengine)
 * [ContainerEngine](#containerengine)
