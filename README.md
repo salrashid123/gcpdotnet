@@ -34,7 +34,7 @@ The platforms that are domstrated here are:
 Both applications simply spin up and run the samples using coreclr in Docker container.  The samples are modified in the following way to run with healthchecks in GCP:
 
 * port:  8080
-* GET requests to endpoint */_ah/healh* must return a *200* OK HTTP response
+* GET requests to endpoint */_ah/health* must return a *200* OK HTTP response
 * Use [Kestrel Webserver](https://github.com/aspnet/KestrelHttpServer)
 
 ***  
