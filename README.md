@@ -42,6 +42,23 @@ Both applications simply spin up and run the samples using coreclr in Docker con
 
 ##### HelloMvc
 
+To run the code directly from the source dockerhub image:
+
+```bash
+docker run -p 8080:8080 docker.io/salrashid123/mvc
+```
+
+To run from the git repo
+
+```
+cd HelloMvc
+docker build -t mvc .
+
+docker run -t -p 8080:8080 mvc
+```
+
+To modify the root source directly:
+
 Download
 [ASPNet HelloMvc Sample](https://github.com/aspnet/Home/tree/dev/samples/1.0.0-beta8/HelloMvc)
 
@@ -55,25 +72,28 @@ Then edit to change port to :8080 and allow healthchecks on `/_ah/health` in the
 
 To run locally using the source docker repo:
 
-```bash
-docker run -p 8080:8080 docker.io/salrashid123/mvc
-```
-
-
 ##### WebApplication1
 
-Then edit to change port to :8080 and allow healthchecks on `/_ah/health` in the following files as shown in the source tree:
-
-* Startup.cs
-* project.json
-* Dockerfile
-
-
-To run locally using the source docker repo:
+To run the code directly from the source dockerhub image:
 
 ```bash
 docker run -p 8080:8080 docker.io/salrashid123/web1
 ```
+
+To run from the git repo
+
+```
+cd HelloMvc
+docker build -t web1 .
+
+docker run -t -p 8080:8080 web1
+```
+
+As reference, the following files were modified to listen on :8080 and for healthchecks on `/_ah/health`:
+
+* Startup.cs
+* project.json
+* Dockerfile
 
 
 ***  
