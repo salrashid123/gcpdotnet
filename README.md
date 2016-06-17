@@ -21,7 +21,7 @@ You can use Visutal Studio 2015 to create and extend the sample from scratch.  V
     "New Project 
       --> C# 
        --> Web 
-        --> ASP.NET Core Web Application (.NET Coore) 
+        --> ASP.NET Core Web Application (.NET Core) 
                (Change Authenticaiton --> No Authentication)
 
 The platforms that are domstrated here are:
@@ -99,10 +99,9 @@ To deploy on GKE, you need to setup the replication controllers and frontend loa
 
 **Note** in the example below, the configuration ponts to a public image for the above two examples. You can configure your own private repository or use [Google Container Registry](https://cloud.google.com/container-registry/).
 
-The two prebuilt images are on docker.io registry under:
+The prebuilt image is on docker.io registry under:
 
-* **HelloMvc**:  [docker.io/salrashid123/mvc](https://hub.docker.com/r/salrashid123/mvc/)
-* **WebApplication1** [docker.io/salrashid123/web1](https://hub.docker.com/r/salrashid123/web1/)
+* **WebApplication1**:  [docker.io/salrashid123/mvc](https://hub.docker.com/r/salrashid123/mvc/)
 
 
 ######Replication Controllers
