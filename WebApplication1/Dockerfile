@@ -1,9 +1,11 @@
-#FROM microsoft/aspnet:1.0.0-beta8
-FROM microsoft/aspnet:1.0.0-beta8-coreclr
+FROM microsoft/dotnet:1.0.0-preview1
 
 ADD . /app
 WORKDIR /app
-RUN ["dnu", "restore"]
+RUN ["dotnet", "restore"]
 
 EXPOSE 8080
-ENTRYPOINT ["dnx", "-p", "src/WebApplication1/project.json", "kestrel"]
+WORKDIR /app/src/WebApplication1/
+ENTRYPOINT ["dotnet", "run", "-p", "project.json"]
+
+
