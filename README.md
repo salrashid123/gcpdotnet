@@ -320,6 +320,7 @@ dotnet --version
 
 ```bash
 dotnet restore
+cd src/WebApplication1/
 dotnet run -p src/WebApplication1/project.json
 ```
 
