@@ -65,7 +65,7 @@ As reference, the following files were modified to listen on :8080 and for healt
 * [Startup.cs](WebApplication1/src/WebApplication1/Startup.cs)
 * [Program.cs](WebApplication1/src/WebApplication1/Program.cs)
 * [Controllers/HomeController.cs](WebApplication1/src/WebApplication1/Controllers/HomeController.cs)
-* [Views/Health.cshtml](WebApplication1/src/WebApplication1/Views/Health.cshtml)
+* [Views/Health.cshtml](WebApplication1/src/WebApplication1/Views/Home/Health.cshtml)
 * [project.json](WebApplication1/src/WebApplication1/project.json)
 * [Dockerfile](WebApplication1/Dockerfile)
 * [global.json](WebApplication1/global.json)
