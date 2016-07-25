@@ -52,6 +52,17 @@ To run the code directly from the source dockerhub image:
 docker run -p 8080:8080 docker.io/salrashid123/mvc
 ```
 
+or as rkt (note, your rkt ip will bind to something else)
+
+```bash
+sudo rkt run --insecure-options=image docker://salrashid123/mvc
+rkt list
+UUID		APP	IMAGE NAME					STATE	CREATED		STARTED		NETWORKS
+36a7ac5b	mvc	registry-1.docker.io/salrashid123/mvc:latest	running	4 seconds ago	4 seconds ago	default:ip4=172.16.28.19
+
+curl http://172.16.28.19:8080
+```
+
 To build from the git repo
 
 ```
