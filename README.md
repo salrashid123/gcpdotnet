@@ -8,7 +8,7 @@ The example here uses Microsofts's [.NET Core 1.0.0](https://www.microsoft.com/n
 
 The sample contained here is confirmed to run against the current preview release
 
-**[microsoft/dotnet:1.0.0-preview1](https://hub.docker.com/r/microsoft/dotnet/)**
+**dotnet 1.0.0-preview2-003121**
 
 in project.json:
 ```
