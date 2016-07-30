@@ -337,7 +337,7 @@ However, if you want to run coreclr directly on your machine, make sure you atle
 
 ```bash
 dotnet --version
-1.0.0-preview1-002702
+1.0.0-preview2-003121
 ```
 
 ```bash
