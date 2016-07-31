@@ -2,13 +2,26 @@
 
 ####  samples provided as-is without warranty
 
-Sample code demonstrating running trivial .NET web applications on Google Cloud Platform services.  These simply builds off of existing technologies and samples but configures it to run on GCP effeciently with healh checking and load balancing.  
+Sample code demonstrating running trivial .NET web applications on Google Cloud Platform services.  
+These simply builds off of existing technologies and samples but configures it to run on GCP effeciently with healh checking and load balancing.  
 
-The example here uses Microsofts's [.NET Core 1.0.0](https://www.microsoft.com/net/core) RC/preview (dotnet-dev-1.0.0-preview2-003121).  The soruce [Dockerfile](WebApplication1/src/Dockerfile) is provided below
+The example here uses Microsofts's [.NET Core 1.0.0](https://www.microsoft.com/net/core) RC/preview (dotnet-dev-1.0.0-preview2-003121). 
 
-The sample contained here is confirmed to run against the current preview release
+**[microsoft/dotnet:1.0.0-preview2-sdk](https://hub.docker.com/r/microsoft/dotnet/)**
 
-**dotnet 1.0.0-preview2-003121**
+
+```
+FROM microsoft/dotnet:1.0.0-preview2-sdk
+
+ADD . /app
+WORKDIR /app
+RUN ["dotnet", "restore"]
+
+EXPOSE 8080
+WORKDIR /app/src/WebApplication1/
+ENTRYPOINT ["dotnet", "run", "-p", "project.json"]
+
+```
 
 in project.json:
 ```
@@ -94,6 +107,27 @@ To run localy without Docker, install dotnet-dev-1.0.0-preview2-003121 as shown 
   dotnet restore
   dotnet run
   ```
+
+If you would rather source from a basic image an install manually, you an substitute Dockerfile with:
+```
+FROM ubuntu:xenial
+
+RUN apt-get update
+RUN apt-get -y install apt-transport-https
+RUN sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
+RUN apt-get update
+
+RUN apt-get install -y dotnet-dev-1.0.0-preview2-003121
+
+ADD . /app
+WORKDIR /app
+RUN ["dotnet", "restore"]
+EXPOSE 8080
+WORKDIR /app/src/WebApplication1/
+ENTRYPOINT ["dotnet", "run", "-p", "project.json"]
+```
+
 
 #### Deploying
 
@@ -349,3 +383,11 @@ dotnet run -p project.json
 on Windows
 
 ![Visual Studio](images/dotnet_win.png)
+
+
+### Using Google API Libraries
+
+At the time of writing (July,16), Google API SDK libraries for .NET do **not** target beyond [.NET Framework 4.5*](https://www.nuget.org/packages/Google.Apis/).  This essentially means you cannot run Google API libraries against the procedure outlined here.
+
+However, there are some ports to dnxcore50 authored outside of Google: [https://www.nuget.org/packages/Google.Apis/](https://www.nuget.org/packages/Google.Apis/)
+
