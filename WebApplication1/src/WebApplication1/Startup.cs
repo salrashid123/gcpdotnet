@@ -55,6 +55,10 @@ namespace WebApplication3
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
+                    name: "gcs",
+                    template: "gcs",
+                    defaults: new { controller = "Home", action = "GCS" });
+                routes.MapRoute(
                     name: "health",
                     template: "_ah/health",
                     defaults: new { controller = "Home", action = "Health" });

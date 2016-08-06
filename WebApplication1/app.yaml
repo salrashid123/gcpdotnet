@@ -7,4 +7,4 @@ vm: true
 manual_scaling:
   instances: 1
 network:
-  instance_tag: "mono"
+  instance_tag: "dotnet"
