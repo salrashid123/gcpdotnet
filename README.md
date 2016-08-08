@@ -128,7 +128,8 @@ in project.json, specify
 "Google.Apis.Storage.v1": "1.15.0.560"
 ```
 
-For example, if you want to list out buckets in a GCS bucket:
+The following list out some objects in the public [USPTO GCS bucket](https://cloud.google.com/storage/docs/access-public-data).
+If you want to list the objects in your on project, please change **YOUR_PROJECT** while deploying the sample (you'll need to rebuild the docker image).
 ```dotnet
 using Google.Apis;
 using Google.Apis.Auth.OAuth2;
@@ -152,21 +153,24 @@ using Google.Apis.Services;
 
 ...
         service = await CreateServiceAsync();
-        var buckets = service.Buckets.List("mineral-minutia-820").Execute();
-        if (buckets.Items != null)
-          {
-             foreach (var bucket in buckets.Items)
-             {
-                 Console.WriteLine($"Bucket: {bucket.Name}");
-             }
-          }
+        
+        var listRequest = service.Objects.List("uspto-pair");
+        listRequest.MaxResults = 100;
+        var objects = listRequest.Execute();
+        if (objects.Items != null)
+        {
+            foreach (var o in objects.Items)
+            {
+                Console.WriteLine($"Object: {o.Name}");
+            }
+        }
 ```
 
 
 **NOTE** 
 > Until issue #[797](https://github.com/google/google-api-dotnet-client/issues/797) is addressed, you can't easily run a local docker image and access your Google Services 
 > by passing in the cert and application default credentials to mimic deployment.  However, as mentioned above, you can work around this by using
-> [GCE Metadata Server Emulator](https://github.com/salrashid123/gce_metadata_server). 
+> [GCE Metadata Server Emulator](https://github.com/salrashid123/gce_metadata_server).   Remember to specify **--net=host** while running this container.
 > (ultimately, once the Issue cited above is resolved, you can pass in environment variables and the cert file to allow Application Default Credentials)
 > For reference, see [Alternatives to Metadata tokens for containers](https://github.com/salrashid123/gce_metadata_server#alternatives-to-metadata-tokens-for-containers)
 

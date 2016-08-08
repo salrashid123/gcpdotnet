@@ -57,16 +57,18 @@ namespace WebApplication1.Controllers
             var ret = "";
             service = await CreateServiceAsync();
 
-            var buckets = service.Buckets.List("mineral-minutia-820").Execute();
-            if (buckets.Items != null)
+            var listRequest = service.Objects.List("uspto-pair");
+            listRequest.MaxResults = 100;
+            var obj = listRequest.Execute();
+            if (obj.Items != null)
             {
-                foreach (var bucket in buckets.Items)
+                foreach (var o in obj.Items)
                 {
-                    Console.WriteLine($"Bucket: {bucket.Name}");
-                    ret = ret +  bucket.Name + "," ;
+                    Console.WriteLine($"Object: {o.Name}");
+                    ret = ret + "  " + o.Name + "  ";
                 }
             }
-            ViewData["Message"] = "bucketList: [" + ret + "]";
+            ViewData["Message"] = "Object list in gs://uspto-pair: [" + ret + "]";
             return View();
         }
 
