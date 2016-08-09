@@ -130,7 +130,7 @@ in project.json, specify
 
 The following list out some objects in the public [USPTO GCS bucket](https://cloud.google.com/storage/docs/access-public-data).
 If you want to list the objects in your on project, please change **YOUR_PROJECT** while deploying the sample (you'll need to rebuild the docker image).
-```dotnet
+```csharp
 using Google.Apis;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Storage.v1;
@@ -174,6 +174,38 @@ using Google.Apis.Services;
 > (ultimately, once the Issue cited above is resolved, you can pass in environment variables and the cert file to allow Application Default Credentials)
 > For reference, see [Alternatives to Metadata tokens for containers](https://github.com/salrashid123/gce_metadata_server#alternatives-to-metadata-tokens-for-containers)
 
+
+
+#### Pack/Publish steps
+If you want to pack the deployment to a .dll using [dotnet publish](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/dotnet-publish)
+
+in project.json, if the following artifiact from Visual Studio exists, remove
+```
+  "scripts": {
+    "prepublish": [ "bower install", "dotnet bundle" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
+```
+
+Then make the build/release .dll
+```
+cd WebApplication1/src/WebApplication1
+dotnet restore
+dotnet publish 
+dotnet bin/Debug/netcoreapp1.0/publish/WebApplication1.dll
+```
+
+Finally, edit the Dockerfile:
+```
+FROM microsoft/dotnet:1.0.0-preview2-sdk
+
+ADD . /app
+WORKDIR /app
+
+EXPOSE 8080
+WORKDIR /app/src/WebApplication1/
+ENTRYPOINT ["dotnet", "bin/Release/netcoreapp1.0/publish/WebApplication1.dll"]
+```
 
 #### Deploying
 
