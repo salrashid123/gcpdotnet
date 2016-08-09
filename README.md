@@ -191,11 +191,14 @@ Then make the build/release .dll
 ```
 cd WebApplication1/src/WebApplication1
 dotnet restore
-dotnet publish 
-dotnet bin/Debug/netcoreapp1.0/publish/WebApplication1.dll
+dotnet publish  -c Release
+```
+To run the local pack directly:
+```
+dotnet bin/Release/netcoreapp1.0/publish/WebApplication1.dll
 ```
 
-Finally, edit the Dockerfile:
+Finally, edit the Dockerfile
 ```
 FROM microsoft/dotnet:1.0.0-preview2-sdk
 
