@@ -367,6 +367,7 @@ The Container VM is defined by the following yaml file:
 
 **containers.yaml**
 ```yaml
+apiVersion: v1
 version: v1
 kind: Pod
 metadata:
