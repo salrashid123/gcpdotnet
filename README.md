@@ -392,7 +392,6 @@ gcloud compute firewall-rules create allow-http --allow tcp:80
 gcloud compute instance-templates create dotnet \
     --image-family container-vm \
     --image-project=google-containers \
-    --image-family=container-vm  \
     --tags dotnetserver \
     --metadata-from-file google-container-manifest=containers.yaml \
     --machine-type f1-micro
