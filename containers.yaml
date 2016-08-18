@@ -1,7 +1,8 @@
+apiVersion: v1
 version: v1
 kind: Pod
 metadata:
-  name: web 
+  name: web
 spec:
   containers:
     - name: web
@@ -11,5 +12,3 @@ spec:
         - containerPort: 8080
           hostPort: 80
           protocol: TCP
-  restartPolicy: Always
-  dnsPolicy: Default

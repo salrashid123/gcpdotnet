@@ -118,7 +118,7 @@ To run localy without Docker, install dotnet-dev-1.0.0-preview2-003121 as shown 
 
 You can even use Google APIs on docker now with!.  Just reference [1.15.0](https://github.com/google/google-api-dotnet-client/releases/tag/v1.15.0) version of .net libraires.
 
-After you refernece it, you call GCP apis direclty.  For example, see: 
+After you refernece it, you call GCP apis direclty under path _/gcs_.  For example, see: 
 * [project.json](WebApplication1/src/WebApplication1/project.json)
 * [HomeController.cs](WebApplication1/src/WebApplication1/Controllers/HomeController.cs)
 * [Views/GCS.cshtml](WebApplication1/src/WebApplication1/Views/Home/GCS.cshtml)
@@ -129,7 +129,7 @@ in project.json, specify
 ```
 
 The following list out some objects in the public [USPTO GCS bucket](https://cloud.google.com/storage/docs/access-public-data).
-If you want to list the objects in your on project, please change **YOUR_PROJECT** while deploying the sample (you'll need to rebuild the docker image).
+If you want to list the objects in your on project, please change _uspto-pair_ while deploying the sample (you'll need to rebuild the docker image).
 ```csharp
 using Google.Apis;
 using Google.Apis.Auth.OAuth2;
@@ -175,7 +175,6 @@ using Google.Apis.Services;
 > For reference, see [Alternatives to Metadata tokens for containers](https://github.com/salrashid123/gce_metadata_server#alternatives-to-metadata-tokens-for-containers)
 
 
-
 #### Pack/Publish steps
 If you want to pack the deployment to a .dll using [dotnet publish](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/dotnet-publish)
 
@@ -209,6 +208,7 @@ EXPOSE 8080
 WORKDIR /app/src/WebApplication1/
 ENTRYPOINT ["dotnet", "bin/Release/netcoreapp1.0/publish/WebApplication1.dll"]
 ```
+_Note:_  As of 8/16, dotnet is currently not supported on [Alpine Linux](https://github.com/dotnet/coreclr/issues/917).
 
 #### Deploying
 
@@ -392,6 +392,7 @@ gcloud compute firewall-rules create allow-http --allow tcp:80
 gcloud compute instance-templates create dotnet \
     --image-family container-vm \
     --image-project=google-containers \
+    --image-family=container-vm  \
     --tags dotnetserver \
     --metadata-from-file google-container-manifest=containers.yaml \
     --machine-type f1-micro
