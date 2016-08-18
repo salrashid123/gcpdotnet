@@ -412,7 +412,7 @@ Then setup the actual forwarding rule.  Note he IP address
 ```
 gcloud compute forwarding-rules create fwddotnet \
     --region us-central1 --ip-protocol TCP \
-    --ports 80 --target-pool tphttp
+    --ports=80 --target-pool tphttp
 
 NAME      REGION      IP_ADDRESS     IP_PROTOCOL TARGET
 fwddotnet us-central1 104.197.85.206 TCP         us-central1/targetPools/tphttp
