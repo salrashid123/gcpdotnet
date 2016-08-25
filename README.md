@@ -36,7 +36,9 @@ You can use Visutal Studio 2015 to create and extend the sample from scratch.  V
     "New Project 
      * C# 
        * Web 
-         * ASP.NET Core Web Application (.NET Core) ;  (Change Authenticaiton --> No Authentication)
+         * ASP.NET Core Web Application (.NET Core) ;  (Change Authenticaiton --> No Authentication)  
+
+> (optionally, if you want to try out Google APIs, see [Using Google API Libraries](#using-google-api-libraries))
 
 The platforms that are domstrated here are:
 
