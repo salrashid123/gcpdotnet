@@ -71,7 +71,7 @@ docker run -p 8080:8080 docker.io/salrashid123/mvc
 The only endpoint you cant access is */gcs* as that requires access to your hosts applicaton default credentials though you can work around that using 
 [GCE Metadata Server Emulator](https://github.com/salrashid123/gce_metadata_server).
 
-Or using [rkt](https://github.com/coreos/rkt) (note, your rkt ip will bind to something else)
+If you prefer using [rkt](https://github.com/coreos/rkt),
 
 ```bash
 sudo rkt run --insecure-options=image docker://salrashid123/mvc
@@ -169,12 +169,12 @@ using Google.Apis.Services;
 ```
 
 
-**NOTE** 
-> Until issue #[797](https://github.com/google/google-api-dotnet-client/issues/797) is addressed, you can't easily run a local docker image and access your Google Services 
-> by passing in the cert and application default credentials to mimic deployment.  However, as mentioned above, you can work around this by using
-> [GCE Metadata Server Emulator](https://github.com/salrashid123/gce_metadata_server).   Remember to specify **--net=host** while running this container.
-> (ultimately, once the Issue cited above is resolved, you can pass in environment variables and the cert file to allow Application Default Credentials)
-> For reference, see [Alternatives to Metadata tokens for containers](https://github.com/salrashid123/gce_metadata_server#alternatives-to-metadata-tokens-for-containers)
+**NOTE**
+> If you want to build and run the docker container with GCP API code, you will need to provide the container some way to acquire an access_token for GCP.
+> There are serveral ways to do that:
+
+* Run the [GCE Metadata Server Emulator](https://github.com/salrashid123/gce_metadata_server).   
+* Pass in json certificate file to the container: [Alternatives to Metadata tokens for containers](https://github.com/salrashid123/gce_metadata_server#alternatives-to-metadata-tokens-for-containers)
 
 
 #### Pack/Publish steps
