@@ -127,7 +127,7 @@ After you refernece it, you call GCP apis direclty under path _/gcs_.  For examp
 
 in project.json, specify
 ```
-"Google.Apis.Storage.v1": "1.15.0.560"
+"Google.Apis.Storage.v1": "1.16.0.616"
 ```
 
 The following list out some objects in the public [USPTO GCS bucket](https://cloud.google.com/storage/docs/access-public-data).

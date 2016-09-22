@@ -21,7 +21,7 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
-    "Google.Apis.Storage.v1": "1.15.0.560"
+    "Google.Apis.Storage.v1": "1.16.0.616"
   },
 
   "tools": {
