@@ -120,7 +120,7 @@ To run localy without Docker, install dotnet-dev-1.0.0-preview2-003121 as shown 
 
 You can even use Google APIs on docker now with!.  Just reference [1.15.0](https://github.com/google/google-api-dotnet-client/releases/tag/v1.15.0) version of .net libraires.
 
-After you refernece it, you call GCP apis direclty under path _/gcs_.  For example, see: 
+After you reference it, you call GCP apis direclty under path _/gcs_.  For example, see: 
 * [project.json](WebApplication1/src/WebApplication1/project.json)
 * [HomeController.cs](WebApplication1/src/WebApplication1/Controllers/HomeController.cs)
 * [Views/GCS.cshtml](WebApplication1/src/WebApplication1/Views/Home/GCS.cshtml)
