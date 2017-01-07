@@ -7,11 +7,11 @@ These simply builds off of existing technologies and samples but configures it t
 
 The example here uses Microsofts's [.NET Core 1.0.0](https://www.microsoft.com/net/core) RC/preview (dotnet-dev-1.0.0-preview2-003121). 
 
-**[microsoft/dotnet:1.0.0-preview2-sdk](https://hub.docker.com/r/microsoft/dotnet/)**
+**[microsoft/dotnet:1.1.0-sdk-projectjson](https://hub.docker.com/r/microsoft/dotnet/)**
 
 
 ```
-FROM microsoft/dotnet:1.0.0-preview2-sdk
+FROM microsoft/dotnet:1.1.0-sdk-projectjson
 
 ADD . /app
 WORKDIR /app
@@ -27,7 +27,7 @@ in project.json:
 ```
 "Microsoft.NETCore.App": {
    "type": "platform",
-   "version": "1.0.0"
+   "version": "1.1.0"
 }
 ```
 You can use Visutal Studio 2015 to create and extend the sample from scratch.  VS2015 
@@ -108,7 +108,7 @@ As reference, the following files were modified to listen on :8080 and for healt
 
 ***  
 
-To run localy without Docker, install dotnet-dev-1.0.0-preview2-003121 as shown in the [Dockerfile](WebApplication1/Dockerfile) and off of the microsoft .net [install guides] (https://www.microsoft.com/net/core#ubuntu).
+To run localy without Docker, install dotnet-dev-1.0.0-preview2-1-003177 as shown in the [Dockerfile](WebApplication1/Dockerfile) and off of the microsoft .net [install guides] (https://www.microsoft.com/net/core#ubuntu).
   Once installed, then,
   ```
   cd src\WebApplication1\
@@ -201,7 +201,7 @@ dotnet bin/Release/netcoreapp1.0/publish/WebApplication1.dll
 
 Finally, edit the Dockerfile
 ```
-FROM microsoft/dotnet:1.0.0-preview2-sdk
+FROM microsoft/dotnet:1.1.0-sdk-projectjson
 
 ADD . /app
 WORKDIR /app
@@ -460,7 +460,7 @@ However, if you want to run dotnet directly on your machine, make sure you atlea
 
 ```bash
 dotnet --version
-1.0.0-preview2-003121
+1.0.0-preview2-1-003177
 ```
 
 ```bash
