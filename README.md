@@ -54,7 +54,7 @@ The platforms that are demonstrated here are:
 Sample application simply spins up inside a Docker container an runs Kestrel to host the application.  The sample is modified from the baseline in the following way to run with healthchecks in GCP:
 
 * port:  8080
-* GET requests to endpoint */_ah/healh* must return a *200* OK HTTP response
+* GET requests to endpoint */_ah/health* must return a *200* OK HTTP response
 * Use [Kestrel Webserver](https://github.com/aspnet/KestrelHttpServer)
 
 ***  
