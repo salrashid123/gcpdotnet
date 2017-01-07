@@ -40,7 +40,7 @@ You can use Visutal Studio 2015 to create and extend the sample from scratch.  V
 
 > (optionally, if you want to try out Google APIs, see [Using Google API Libraries](#using-google-api-libraries))
 
-The platforms that are domstrated here are:
+The platforms that are demonstrated here are:
 
 * [Appengine](#appengine)
 * [ContainerEngine](#containerengine)
