@@ -44,7 +44,7 @@ The platforms that are demonstrated here are:
 
 * [Appengine](#appengine)
 * [ContainerEngine](#containerengine)
-* [ContainerVM](#containervm)
+* [Container-Optimized OS](#containervm)
 
 
 ***  
@@ -357,34 +357,41 @@ Now that we have a public ip, the service is available
 
 `http://104.197.194.190`
 
-#####ContainerVM
+#####Container-Optimized OS
 
 Container VMs simply spin up one container per GCE instance with docker already installed and the instructions to strartup the image thats specified. 
 
 The following insruction set setups a managed instance group, healthcheck and loadbalancer.  You can use the managed instance group to later auto (or manually) scale the number of VMs up or down
 
-For more information, see: [ContainerVM](https://cloud.google.com/compute/docs/containers/container_vms)
+For more information, see: [Conatiner Optimized OS](https://cloud.google.com/container-optimized-os/docs/)
 
 The Container VM is defined by the following yaml file:
 
 **containers.yaml**
 ```yaml
-apiVersion: v1
-version: v1
-kind: Pod
-metadata:
-  name: web 
-spec:
-  containers:
-    - name: web
-      image: salrashid123/mvc
-      imagePullPolicy: Always
-      ports:
-        - containerPort: 8080
-          hostPort: 80
-          protocol: TCP
-  restartPolicy: Always
-  dnsPolicy: Default
+#cloud-configs
+users:
+- name: cloudservice
+  uid: 2000
+
+write_files:
+- path: /etc/systemd/system/cloudservice.service
+  permissions: 0644
+  owner: root
+  content: |
+    [Unit]
+    Description=Start a simple docker container
+
+    [Service]
+    Environment="HOME=/home/cloudservice"
+    ExecStartPre=/usr/share/google/dockercfg_update.sh
+    ExecStart=/usr/bin/docker run -t -p 8080:8080 --name=dotnetservice docker.io/salrashid123/mvc:latest
+    ExecStop=/usr/bin/docker stop dotnetservice
+    ExecStopPost=/usr/bin/docker rm dotnetservice
+
+runcmd:
+- systemctl daemon-reload
+- systemctl start cloudservice.service
 ```
 
 

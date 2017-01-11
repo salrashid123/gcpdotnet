@@ -1,14 +1,23 @@
-apiVersion: v1
-version: v1
-kind: Pod
-metadata:
-  name: web
-spec:
-  containers:
-    - name: web
-      image: salrashid123/mvc
-      imagePullPolicy: Always
-      ports:
-        - containerPort: 8080
-          hostPort: 80
-          protocol: TCP
+#cloud-configs
+users:
+- name: cloudservice
+  uid: 2000
+
+write_files:
+- path: /etc/systemd/system/cloudservice.service
+  permissions: 0644
+  owner: root
+  content: |
+    [Unit]
+    Description=Start a simple docker container
+
+    [Service]
+    Environment="HOME=/home/cloudservice"
+    ExecStartPre=/usr/share/google/dockercfg_update.sh
+    ExecStart=/usr/bin/docker run -t -p 8080:8080 --name=dotnetservice docker.io/salrashid123/mvc:latest
+    ExecStop=/usr/bin/docker stop dotnetservice
+    ExecStopPost=/usr/bin/docker rm dotnetservice
+
+runcmd:
+- systemctl daemon-reload
+- systemctl start cloudservice.service
