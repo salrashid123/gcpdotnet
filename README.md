@@ -116,9 +116,9 @@ To run localy without Docker, install dotnet-dev-1.0.0-preview2-1-003177 as show
   dotnet run
   ```
 
-#### Using Google API Libraries
+#### Using Google Cloud Libraries
 
-You can even use Google APIs on docker now with!.  Just reference [1.15.0](https://github.com/google/google-api-dotnet-client/releases/tag/v1.15.0) version of .net libraires.
+You can even use Google Cloud APIs on docker now.  Just reference [Google.Cloud.Storage.V1](https://googlecloudplatform.github.io/google-cloud-dotnet/) version of .net libraires.
 
 After you reference it, you call GCP apis direclty under path _/gcs_.  For example, see: 
 * [project.json](WebApplication1/src/WebApplication1/project.json)
@@ -127,45 +127,22 @@ After you reference it, you call GCP apis direclty under path _/gcs_.  For examp
 
 in project.json, specify
 ```
-"Google.Apis.Storage.v1": "1.16.0.616"
+"Google.Cloud.Storage.V1": "1.0.0-beta07"
 ```
 
 The following list out some objects in the public [USPTO GCS bucket](https://cloud.google.com/storage/docs/access-public-data).
 If you want to list the objects in your on project, please change _uspto-pair_ while deploying the sample (you'll need to rebuild the docker image).
 ```csharp
-using Google.Apis;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Storage.v1;
-using Google.Apis.Storage.v1.Data;
-using Google.Apis.Auth.OAuth2.Responses;
-using Google.Apis.Services;
 
-        private StorageService service;
-        private async Task<StorageService> CreateServiceAsync()
-        {
-            GoogleCredential credential = await GoogleCredential.GetApplicationDefaultAsync();
-            var serviceInitializer = new BaseClientService.Initializer()
-            {
-                ApplicationName = "Storage Sample",
-                HttpClientInitializer = credential
-            };
-            service = new StorageService(serviceInitializer);
-            return service;
-        }
+using Google.Cloud.Storage.V1;
 
-...
-        service = await CreateServiceAsync();
-        
-        var listRequest = service.Objects.List("uspto-pair");
-        listRequest.MaxResults = 100;
-        var objects = listRequest.Execute();
-        if (objects.Items != null)
-        {
-            foreach (var o in objects.Items)
-            {
-                Console.WriteLine($"Object: {o.Name}");
-            }
-        }
+var ret = "";
+var client = StorageClient.Create();
+
+foreach (var obj in client.ListObjects("uspto-pair", "").Take(100))
+{
+   ret = ret + "  " + obj.Name + "  ";
+}
 ```
 
 
