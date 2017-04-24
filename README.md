@@ -199,7 +199,7 @@ gcloud config set project <your_project>
 ```
 
 
-#####AppEngine
+##### AppEngine
 
 Deploying to GAE is pretty simple:
 ```bash
@@ -209,7 +209,7 @@ gcloud app deploy app.yaml
 Then, 
 `http://your_project.appspot.com`
 
-#####ContainerEngine
+##### ContainerEngine
 
 To deploy on GKE, you need to setup the replication controllers and frontend loadbalancer services as well as a small cluster.
 
@@ -222,7 +222,7 @@ The prebuilt image is on docker.io registry under:
 * **WebApplication1**:  [docker.io/salrashid123/mvc](https://hub.docker.com/r/salrashid123/mvc/)
 
 
-######Replication Controllers
+###### Replication Controllers
 **web-rc.yaml**
 (edit the *image* section in the yaml below to use a different referenced image)
 ```yaml
@@ -249,7 +249,7 @@ spec:
 ```
 
 
-#####Services
+##### Services
 **web-svc.yaml**
 ```yaml
 apiVersion: v1
@@ -269,12 +269,12 @@ spec:
     type: web-type
 ```
 
-######Set the Runnng zone
+###### Set the Runnng zone
 ```bash
 gcloud config set compute/zone us-central1-a
 ```
 
-######Create a Firewall rule
+###### Create a Firewall rule
 ```
 gcloud compute firewall-rules create allow-http --allow tcp:80
 
@@ -284,7 +284,7 @@ allow-http default 0.0.0.0/0  tcp:80
 
 *Note*  The above service maps port 80 --> 8080 in the container and sets the firewall rules apprpriately.  If you want to directly use 8080 throughout, modify the services file and firewall rule.
 
-######Create a GKE Cluster
+###### Create a GKE Cluster
 ```
 gcloud beta container clusters create cluster-1 --num-nodes 2
 
@@ -292,19 +292,19 @@ NAME       ZONE           MASTER_VERSION  MASTER_IP      MACHINE_TYPE   STATUS
 cluster-1  us-central1-a  1.0.6           104.197.76.93  n1-standard-1  RUNNING
 ```
 
-######List instances in the Cluster
+###### List instances in the Cluster
 ```
 gcloud compute instances list
 ```
 
 
-######Create ReplicationController and Services
+###### Create ReplicationController and Services
 ```
 kubectl create -f web-rc.yaml
 kubectl create -f web-srv.yaml
 ```
 
-######List nodes, pods, replication controllers and services
+###### List nodes, pods, replication controllers and services
 ```
 kubectl get no
 NAME            LABELS           STATUS
@@ -334,7 +334,7 @@ Now that we have a public ip, the service is available
 
 `http://104.197.194.190`
 
-#####Container-Optimized OS
+##### Container-Optimized OS
 
 Container VMs simply spin up one container per GCE instance with docker already installed and the instructions to strartup the image thats specified. 
 
@@ -435,7 +435,7 @@ Finally, the service should be available at the port for the forwarding rule:
 ![Services Frontend](images/siteup.png)
 
 
-####Building Locally
+#### Building Locally
 The easiest way to extend these samples is to generate the docker images and test the images themselves.
 
 Optionally, if you want to extend and deploy these images locally, you will need docker.  Running the images directly inside docker mimics the deployment runtime on GCP (linux images) as opposed to directly running on windows or in Visual Studio.
